@@ -1,4 +1,3 @@
-public interface AdditionalCost {
+public interface Insurable {
     double calculateInsurance();
-    double calculateSurcharge();
 }

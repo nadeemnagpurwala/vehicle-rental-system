@@ -5,11 +5,21 @@ class Main {
         RentalAgency rentalAgency = new RentalAgency();
 
         //Add vehicles to the fleet
-        rentalAgency.addVehicle(new Bike("Hero", "Xtreme 125R", 75.0));
-        rentalAgency.addVehicle(new Car("Maruti", "WagonR", 100.0));
-        rentalAgency.addVehicle(new Bike("KTM", "390 Duke", 125.0));
-        rentalAgency.addVehicle(new Car("Hyundai", "Creta", 200.0));
-        rentalAgency.addVehicle(new Truck("Mahindra", "Blazo", 300.0));
+        rentalAgency.addVehicle(new Bike(
+                "Hero", "Xtreme 125R", 75.0, FuelType.PETROL
+        ));
+        rentalAgency.addVehicle(new Car(
+                "Maruti", "WagonR", 100.0, FuelType.ELECTRIC
+        ));
+        rentalAgency.addVehicle(new Bike(
+                "KTM", "390 Duke", 125.0, FuelType.ELECTRIC
+        ));
+        rentalAgency.addVehicle(new Car(
+                "Hyundai", "Creta", 200.0, FuelType.PETROL
+        ));
+        rentalAgency.addVehicle(new Truck(
+                "Mahindra", "Blazo", 300.0, FuelType.DIESEL
+        ));
 
         //List the vehicles available for rent
         rentalAgency.displayVehicles();

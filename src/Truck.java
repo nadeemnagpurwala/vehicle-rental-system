@@ -1,8 +1,8 @@
-public class Truck extends Vehicle implements Insurable{
+public class Truck extends Vehicle implements Insurable {
     private static final double insuranceRatePercent = 0.25;
 
-    public Truck(String brand, String model, double dailyRate) {
-        super(brand, model, dailyRate);
+    public Truck(String brand, String model, double dailyRate, FuelType fuelType) {
+        super(brand, model, dailyRate, fuelType);
     }
 
     @Override
@@ -10,7 +10,8 @@ public class Truck extends Vehicle implements Insurable{
         double baseRate = this.getDailyRate() * days;
         double insuranceAmount = calculateInsurance();
         double totalInsuranceAmount = insuranceAmount * days;
-        return baseRate + totalInsuranceAmount;
+        double totalSurchargeAmount = calculateSurcharge() * days;
+        return baseRate + totalInsuranceAmount + totalSurchargeAmount;
     }
 
     @Override
