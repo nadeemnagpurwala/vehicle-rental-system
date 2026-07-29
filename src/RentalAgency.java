@@ -32,10 +32,10 @@ public class RentalAgency {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
             System.out.println("Vehicle not found with the provided id");
-        } else if (vehicle.isRented()) {
+        } else if (vehicle.getVehicleAvailability() == VehicleAvailability.RENTED) {
             System.out.println("The selected vehicle is not available for rent");
         } else {
-            vehicle.setRented(true);
+            vehicle.setVehicleAvailability(VehicleAvailability.RENTED);
             System.out.printf("You have rented %s %s for %d days at %.2f INR %n", vehicle.getBrand(), vehicle.getModel(), days, vehicle.calculateRentalCost(days));
         }
     }
@@ -44,10 +44,10 @@ public class RentalAgency {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
             System.out.println("Vehicle not found with the provided id");
-        } else if (!vehicle.isRented()) {
+        } else if (vehicle.getVehicleAvailability() == VehicleAvailability.AVAILABLE) {
             System.out.println("The selected vehicle has not been rented, hence can't be returned");
         } else {
-            vehicle.setRented(false);
+            vehicle.setVehicleAvailability(VehicleAvailability.AVAILABLE);
             System.out.printf("You have returned %s %s %n", vehicle.getBrand(), vehicle.getModel());
         }
     }

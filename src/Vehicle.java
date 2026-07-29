@@ -4,7 +4,7 @@ public abstract class Vehicle {
     private final String brand;
     private final String model;
     private final double dailyRate;
-    private boolean isRented = false;
+    private VehicleAvailability vehicleAvailability = VehicleAvailability.AVAILABLE;
 
     public Vehicle(String brand, String model, double dailyRate) {
         this.brand = brand;
@@ -29,12 +29,12 @@ public abstract class Vehicle {
         return this.dailyRate;
     }
 
-    public void setRented(boolean rented) {
-        isRented = rented;
+    public VehicleAvailability getVehicleAvailability() {
+        return vehicleAvailability;
     }
 
-    public boolean isRented() {
-        return this.isRented;
+    public void setVehicleAvailability(VehicleAvailability vehicleAvailability) {
+        this.vehicleAvailability = vehicleAvailability;
     }
 
     public abstract double calculateRentalCost(int days);
@@ -44,6 +44,6 @@ public abstract class Vehicle {
         System.out.println("Brand: " + getBrand());
         System.out.println("Model: " + getModel());
         System.out.println("Daily rate: " + getDailyRate());
-        System.out.println("Status: " + (isRented() ? "Rented" : "Available"));
+        System.out.println("Status: " + getVehicleAvailability());
     }
 }
