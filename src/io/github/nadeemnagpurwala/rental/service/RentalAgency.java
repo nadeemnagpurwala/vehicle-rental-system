@@ -1,6 +1,9 @@
 package io.github.nadeemnagpurwala.rental.service;
 
+import io.github.nadeemnagpurwala.rental.exception.VehicleNotAvailableException;
+import io.github.nadeemnagpurwala.rental.exception.VehicleNotFoundException;
 import io.github.nadeemnagpurwala.rental.model.Insurable;
+import io.github.nadeemnagpurwala.rental.model.RentalReceipt;
 import io.github.nadeemnagpurwala.rental.model.Vehicle;
 import io.github.nadeemnagpurwala.rental.model.VehicleAvailability;
 
@@ -34,28 +37,28 @@ public class RentalAgency {
         }
     }
 
-    public void rentVehicle(int id, int days) {
+    public RentalReceipt rentVehicle(int id, int days) throws VehicleNotFoundException, VehicleNotAvailableException {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
-            System.out.println("io.github.nadeemnagpurwala.rental.model.Vehicle not found with the provided id");
-        } else if (vehicle.getVehicleAvailability() == VehicleAvailability.RENTED) {
-            System.out.println("The selected vehicle is not available for rent");
-        } else {
-            vehicle.setVehicleAvailability(VehicleAvailability.RENTED);
-            System.out.printf("You have rented %s %s for %d days at %.2f INR %n", vehicle.getBrand(), vehicle.getModel(), days, vehicle.calculateRentalCost(days));
+            throw new VehicleNotFoundException("Vehicle not found with the provided id");
         }
+        if (vehicle.getVehicleAvailability() == VehicleAvailability.RENTED) {
+            throw new VehicleNotAvailableException("The selected vehicle is not available for rent");
+        }
+        vehicle.setVehicleAvailability(VehicleAvailability.RENTED);
+        return new RentalReceipt(vehicle.getBrand(), vehicle.getModel(), vehicle.calculateRentalCost(days), days);
     }
 
-    public void returnVehicle(int id) {
+    public void returnVehicle(int id) throws VehicleNotFoundException, VehicleNotAvailableException {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
-            System.out.println("io.github.nadeemnagpurwala.rental.model.Vehicle not found with the provided id");
-        } else if (vehicle.getVehicleAvailability() == VehicleAvailability.AVAILABLE) {
-            System.out.println("The selected vehicle has not been rented, hence can't be returned");
-        } else {
-            vehicle.setVehicleAvailability(VehicleAvailability.AVAILABLE);
-            System.out.printf("You have returned %s %s %n", vehicle.getBrand(), vehicle.getModel());
+            throw new VehicleNotFoundException("Vehicle not found with the provided id");
         }
+        if (vehicle.getVehicleAvailability() == VehicleAvailability.AVAILABLE) {
+            throw new VehicleNotAvailableException("The selected vehicle has not been rented, hence can't be returned");
+        }
+        vehicle.setVehicleAvailability(VehicleAvailability.AVAILABLE);
+        System.out.printf("You have returned %s %s %n", vehicle.getBrand(), vehicle.getModel());
     }
 
     private Vehicle findVehicleById(int id) {
