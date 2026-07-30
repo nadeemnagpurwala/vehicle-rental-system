@@ -1,3 +1,5 @@
+package io.github.nadeemnagpurwala.rental.model;
+
 public class Truck extends Vehicle implements Insurable {
     private static final double insuranceRatePercent = 0.25;
 

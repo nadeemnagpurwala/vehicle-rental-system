@@ -1,3 +1,5 @@
+package io.github.nadeemnagpurwala.rental.model;
+
 public class Bike extends Vehicle {
     private static final double discountFeesPercent = 0.1;
     private static final int minimumDaysRequiredForDiscount = 7;

@@ -1,3 +1,9 @@
+package io.github.nadeemnagpurwala.rental.service;
+
+import io.github.nadeemnagpurwala.rental.model.Insurable;
+import io.github.nadeemnagpurwala.rental.model.Vehicle;
+import io.github.nadeemnagpurwala.rental.model.VehicleAvailability;
+
 public class RentalAgency {
     private static final int MAX_FLEET_SIZE = 5;
     private Vehicle[] fleet = new Vehicle[MAX_FLEET_SIZE];
@@ -31,7 +37,7 @@ public class RentalAgency {
     public void rentVehicle(int id, int days) {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
-            System.out.println("Vehicle not found with the provided id");
+            System.out.println("io.github.nadeemnagpurwala.rental.model.Vehicle not found with the provided id");
         } else if (vehicle.getVehicleAvailability() == VehicleAvailability.RENTED) {
             System.out.println("The selected vehicle is not available for rent");
         } else {
@@ -43,7 +49,7 @@ public class RentalAgency {
     public void returnVehicle(int id) {
         Vehicle vehicle = findVehicleById(id);
         if (vehicle == null) {
-            System.out.println("Vehicle not found with the provided id");
+            System.out.println("io.github.nadeemnagpurwala.rental.model.Vehicle not found with the provided id");
         } else if (vehicle.getVehicleAvailability() == VehicleAvailability.AVAILABLE) {
             System.out.println("The selected vehicle has not been rented, hence can't be returned");
         } else {

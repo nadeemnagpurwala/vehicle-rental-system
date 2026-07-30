@@ -1,3 +1,5 @@
+package io.github.nadeemnagpurwala.rental.model;
+
 public enum FuelType {
     PETROL(0.10), DIESEL(0.08), ELECTRIC(0.05);
 

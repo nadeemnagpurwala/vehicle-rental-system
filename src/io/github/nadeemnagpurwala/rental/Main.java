@@ -1,3 +1,11 @@
+package io.github.nadeemnagpurwala.rental;
+
+import io.github.nadeemnagpurwala.rental.model.Bike;
+import io.github.nadeemnagpurwala.rental.model.Car;
+import io.github.nadeemnagpurwala.rental.model.FuelType;
+import io.github.nadeemnagpurwala.rental.model.Truck;
+import io.github.nadeemnagpurwala.rental.service.RentalAgency;
+
 import java.util.Scanner;
 
 class Main {

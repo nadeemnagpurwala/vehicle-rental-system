@@ -1,3 +1,5 @@
+package io.github.nadeemnagpurwala.rental.model;
+
 public abstract class Vehicle {
     private static int idCounter = 1;
     private final int id;
