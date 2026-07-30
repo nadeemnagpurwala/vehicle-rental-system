@@ -1,5 +1,7 @@
 package io.github.nadeemnagpurwala.rental.model;
 
+import java.util.Objects;
+
 public abstract class Vehicle {
     private static int idCounter = 1;
     private final int id;
@@ -49,6 +51,37 @@ public abstract class Vehicle {
 
     public double calculateSurcharge() {
         return getDailyRate() * getFuelType().getSurchargeRate();
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", dailyRate=" + dailyRate +
+                ", vehicleAvailability=" + vehicleAvailability +
+                ", fuelType=" + fuelType +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        int objectId = ((Vehicle) obj).id;
+        return this.id == objectId;
+    }
+
+    @Override
+    public int hashCode() {
+        //Two objects that are equal must return the same hash code.
+        //equals() compares id and nothing else — so two vehicles are equal exactly when their ids match.
+        return Objects.hash(id);
     }
 
     public void printDetails() {
